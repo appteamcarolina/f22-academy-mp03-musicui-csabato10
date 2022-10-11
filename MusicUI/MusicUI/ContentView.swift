@@ -101,7 +101,7 @@ struct ContentView: View {
                                 .padding(8)
                             Image(systemName: "pause.circle.fill")
                                 .resizable()
-                                .frame(width: 25, height: 25)
+                                .frame(width: 40, height: 40)
                                 .foregroundColor(.white)
                                 .padding(8)
                             Image(systemName: "forward.end.fill")
@@ -116,7 +116,26 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .padding(8)
                         }
-                        
+                        HStack{
+                
+                            Image(systemName: "laptopcomputer.and.iphone")
+                                .resizable()
+                                .frame(width: 25, height: 15)
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
+                                .resizable()
+                                .frame(width: 20, height: 25)
+                                .foregroundColor(.white)
+                                .padding(.trailing)
+                            Image(systemName: "text.line.first.and.arrowtriangle.forward")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                                .padding(.trailing)
+
+                        }
                     }
                 }
             }
