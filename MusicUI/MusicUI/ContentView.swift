@@ -9,6 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var player: Double = 5
+    @State private var isLiked: Bool = false
+    @State private var looper: Bool = false
+    @State private var paused: Bool = false
+    @State private var songTitle: String = "Salt in the Wound"
+    @State private var playNext: Bool = false
+    @State private var goBack: Bool = false
     
     var body: some View {
         ZStack{
@@ -51,7 +57,7 @@ struct ContentView: View {
                     VStack{
                         HStack{
                             VStack(alignment: .leading){
-                                Text("Salt in the Wound")
+                                Text("\(songTitle)")
                                     .font(.title)
                                     .fontWeight(.medium)
                                     .foregroundColor(.white)
@@ -61,17 +67,16 @@ struct ContentView: View {
                             }
                             .padding(20)
                             Spacer()
-                            Button{
+                            Button(action: {
+                               self.isLiked.toggle()
+                            }) {
+                                Image(systemName: self.isLiked == true ? "heart.fill" : "heart")
+                                      .resizable()
+                                      .frame(width: 20, height: 20)
+                                      .foregroundColor(.white)
+                                      .padding(.trailing)
                             }
-                        label:{
-                            Image(systemName: "heart")
-                                .resizable()
-                                .foregroundColor(.white)
-                                .padding(.trailing)
-                                .frame(width: 40, height: 20)
-                            
-                            
-                        }
+                    
                             
                         }
                         VStack{
@@ -94,27 +99,45 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .padding(8)
                             Spacer()
-                            Image(systemName: "backward.end.fill")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.white)
-                                .padding(8)
-                            Image(systemName: "pause.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.white)
-                                .padding(8)
-                            Image(systemName: "forward.end.fill")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.white)
-                                .padding(8)
+                            Button(action: {
+                               self.looper.toggle()
+                                songTitle = "Salt in the Wound"
+
+                            }) {
+                                Image(systemName: "backward.end.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(.white)
+                                .padding(8)}
+                            
+                            Button(action: {
+                               self.paused.toggle()
+                            }) {
+                                Image(systemName: self.paused == true ? "play.circle.fill" : "pause.circle.fill")
+                                      .resizable()
+                                      .frame(width: 35, height: 35)
+                                      .foregroundColor(.white)
+                            }
+                            Button(action: {
+                                self.playNext.toggle()
+                                songTitle = "Me and My Dog"
+                            }){
+                                Image(systemName: "forward.end.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                            }
                             Spacer()
-                            Image(systemName: "repeat")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.white)
-                                .padding(8)
+                            Button(action: {
+                               self.looper.toggle()
+                            }) {
+                                Image(systemName: self.looper == true ? "repeat.1" : "repeat")
+                                      .resizable()
+                                      .frame(width: 20, height: 20)
+                                      .foregroundColor(.white)
+                                      .padding(.trailing)
+                            }
                         }
                         HStack{
                 
